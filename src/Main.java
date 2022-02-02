@@ -17,35 +17,16 @@ public class Main {
         FlightDao flightDao = new FlightDao();
         PassengerDao passengerDao = new PassengerDao();
         FlightService flightService = new FlightService(flightDao);
-        PassengerService passengerService = new PassengerService(passengerDao);
+        PassengerService passengerService = new PassengerService(passengerDao, flightService);
 
-
-////        System.out.println(flight1);
-//          flightService.addPassengerToFlight(passenger1, flight1);
-//          flightService.addPassengerToFlight(passenger1, flight2);
-////        System.out.println(flight1);
-//
-//        System.out.println(flightService.onFlight(passenger1, flight1));
-//        System.out.println(flightService.onFlight(passenger1, flight2));
-//        System.out.println(flightService.onFlight(passenger2, flight1));
-//
-//        System.out.println("-----------------------");
-//
-//        flightService.checkPassengerFlights(passenger2);
-
-        System.out.println(passengerService.filterByName("Andrew"));
 
         System.out.println("Welcome to the Flight Booking CLI!");
-
-        //FlightService.displayAllFlights(allFlights);
-
 
         String[] options = {
                 "Add a flight",
                 "Display all flights",
                 "Display booked flights",
-                "Display flights for a specific user",
-                "Book a flight for a user using his ID",
+                "Display flight or book flight for a specific user",
                 "Cancel flight",
                 "Quit the program"
         };
@@ -70,15 +51,16 @@ public class Main {
                     flightService.displayFullyBooked();
                     break;
                 case 4:
-                    System.out.println("Display flight for a specific user selected.");
+                    System.out.println("'Display flight or book a flight for a specific user' selected.");
+                    passengerService.chooseIdOrName();
                     break;
+
                 case 5:
-                    System.out.println("Book a flight for a user using their id selected.");
+                    System.out.println("'Cancel a flight' selected.");
+                    flightService.cancelFlight();
+
                     break;
                 case 6:
-                    System.out.println("Cancel a flight selected.");
-                    break;
-                case 7:
                     System.out.println("Thanks for using our management system!");
                     System.exit(0);
             }

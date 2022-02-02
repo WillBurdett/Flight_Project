@@ -1,6 +1,7 @@
 package flight;
 
 import passenger.Passenger;
+import util.Interface;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -8,13 +9,11 @@ import java.util.List;
 import java.util.Scanner;
 
 public class FlightService {
-    //This is a service class which will deal with the following methods
-    //1. Add a flight
+
     private FlightDao flightDao;
     public FlightService(FlightDao flightDao) {
         this.flightDao = flightDao;
     }
-
 
     public void addFlight() {
         System.out.println("Flight Code?");
@@ -88,7 +87,7 @@ public class FlightService {
     }
 
     public static String displayFlight(Flight flight){
-        return "Destination: " + flight.getDestination() + " | " + "Departure time: " + flight.getDepartureTime() + " | " + "Available seats: " + availableSeats(flight);
+        return flight.getFlightCode() + " | " + "Destination: " + flight.getDestination() + " | " + "Departure time: " + flight.getDepartureTime() + " | " + "Available seats: " + availableSeats(flight);
     }
 
     public void displayAllFlights(){
@@ -141,9 +140,73 @@ public class FlightService {
                 System.out.println(displayFlight(flight));
             }
         } else {
-            System.out.println("No flights available.");
+            System.out.println("No flights booked for " + passenger.getName() +".");
+            bookOrDisplay(passenger);
         }
         System.out.println("---------------------");
     }
 
+    public Flight getFlightByCode(String code){
+        for (Flight f : flightDao.getAllFlights()) {
+            if (code.equalsIgnoreCase(f.getFlightCode())){
+                return f;
+            }
+        }
+        return null;
+    }
+
+    public void cancelFlight(){
+        displayAllFlights();
+        System.out.println("Enter flight code to cancel:");
+        Scanner scanner = new Scanner(System.in);
+        String code = scanner.nextLine();
+        Flight flight = getFlightByCode(code);
+        if (flight == null){
+            System.out.println("Flight not found.");
+        } else {
+            flightDao.getAllFlights().remove(flight);
+            System.out.println("Flight " + flight.getFlightCode() + " cancelled.");
+            displayAllFlights();
+        }
+    }
+
+    public void bookOrDisplay(Passenger p){
+        String[] options = {"Book a flight for " + p.getName(), "Display booked flights for " + p.getName()};
+        int option = Interface.getOption("Would you like to:", options);
+
+        switch (option){
+            case 1:
+                findAvailableFlights(p);
+                break;
+            case 2:
+                checkPassengerFlights(p);
+                break;
+        }
+    }
+
+    public void findAvailableFlights(Passenger p){
+        List<Flight> availableFlights = new ArrayList<>();
+        for (Flight f : flightDao.getAllFlights()) {
+            if (availableSeats(f) > 0 && !onFlight(p, f)){
+                availableFlights.add(f);
+            }
+        }
+        if (availableFlights.size() == 0){
+            System.out.println("No available flights.");
+        } else {
+            String[] arr = new String[availableFlights.size() + 1];
+            for (int i = 0; i <= availableFlights.size(); i++) {
+                if (i == availableFlights.size()){
+                    arr[i] = "Exit";
+                    break;
+                }
+                arr[i] = displayFlight(availableFlights.get(i));
+            }
+            int option = Interface.getOption("Pick an available flight below:", arr);
+            if (option < availableFlights.size()){
+                addPassengerToFlight(p, availableFlights.get(option -1));
+                checkPassengerFlights(p);
+            }
+        }
+    }
 }
