@@ -1,20 +1,37 @@
 package Flight;
 
 public enum Destination {
-    BOD("Bordeaux", "France"),
-    PRG("Prague", "Czech Republic"),
-    CPH("Copenhagen", "Denmark"),
-    BER("Berlin", "Germany"),
-    LAX("Los Angeles", "USA")
+//    BER("Berlin", "Germany"),
+//    BJS("Beijing", "China"),
+//    BOD("Bordeaux", "France"),
+//    CPH("Copenhagen", "Denmark"),
+//    DXB("Dubai", "UAE"),
+//    LAX("Los Angeles", "USA"),
+//    PRG("Prague", "Czech Republic"),
+//    ;
+//
+//    private final String location;
+//    private final String country;
+//
+//    private Destination(String location, String country) {
+//        this.location = location;
+//        this.country = country;
+//    }
 
+    BER,
+    BJS,
+    BOD,
+    CPH,
+    DXB,
+    LAX,
+    PRG
     ;
 
-
-    private final String location;
-    private final String country;
-
-    private Destination(String location, String country) {
-        this.location = location;
-        this.country = country;
-    }
+//    private final String location;
+//    private final String country;
+//
+//    private Destination(String location, String country) {
+//        this.location = location;
+//        this.country = country;
+//    }
 }

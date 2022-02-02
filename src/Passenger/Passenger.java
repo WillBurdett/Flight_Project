@@ -1,9 +1,11 @@
 package Passenger;
 
+import Util.IdGenerator;
+
 import java.util.Objects;
 
 public class Passenger {
-    private int id;
+    private String id;
     private String name;
     private String email;
     private String phoneNumber;
@@ -13,18 +15,19 @@ public class Passenger {
     }
 
     public Passenger(String name, String email, String phoneNumber, String passport) {
+        IdGenerator idGenerator = new IdGenerator();
+        this.id = idGenerator.randomIdGenerator();
         this.name = name;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.passport = passport;
-        //ths.id = use function;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
