@@ -1,4 +1,4 @@
-package Flight;
+package flight;
 
 public enum Destination {
 //    BER("Berlin", "Germany"),
@@ -24,8 +24,7 @@ public enum Destination {
     CPH,
     DXB,
     LAX,
-    PRG
-    ;
+    PRG;
 
 //    private final String location;
 //    private final String country;

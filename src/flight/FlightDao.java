@@ -1,14 +1,37 @@
-package Flight;
+package flight;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class FlightDao {
+    private List<Flight> allFlights = new ArrayList<>();
+
+    public FlightDao() {
+        Flight flight1 = new Flight("code1", Destination.BER, LocalDateTime.of(2022, 1, 22, 9, 30), 0);
+        Flight flight2 = new Flight("code2", Destination.BJS, LocalDateTime.of(2022, 2, 10, 10, 00), 2);
+        Flight flight3 = new Flight("code3", Destination.BOD, LocalDateTime.of(2022, 3, 02, 13, 45), 2);
+
+        allFlights.add(flight1);
+        allFlights.add(flight2);
+        allFlights.add(flight3);
+    }
+    public List<Flight> getAllFlights(){
+        return allFlights;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 //    public List<Flight> readGarage() {
 //
@@ -92,4 +115,4 @@ public class FlightDao {
 
 
   //  }
-}
+

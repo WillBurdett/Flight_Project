@@ -1,6 +1,6 @@
-package Flight;
+package flight;
 
-import Passenger.Passenger;
+import passenger.Passenger;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -10,9 +10,13 @@ import java.util.Scanner;
 public class FlightService {
     //This is a service class which will deal with the following methods
     //1. Add a flight
-    FlightDao flightDao = new FlightDao();
+    private FlightDao flightDao;
+    public FlightService(FlightDao flightDao) {
+        this.flightDao = flightDao;
+    }
 
-    public static void addFlight(List<Flight> availableFlights) {
+
+    public void addFlight() {
         System.out.println("Flight Code?");
 
         Scanner scanner = new Scanner(System.in);
@@ -48,7 +52,7 @@ public class FlightService {
                 break;
             default:
                 System.out.println("Not a valid choice.");
-                addFlight(availableFlights);
+                addFlight();
         }
 
         System.out.println("Departure Date/Time:");
@@ -70,10 +74,7 @@ public class FlightService {
 
         Flight flight = new Flight(flightCode, destination, departureTime, capacity);
 
-        availableFlights.add(flight);
-
-
-
+        flightDao.getAllFlights().add(flight);
     }
     // All flights
     public static int availableSeats(Flight flight){
@@ -90,22 +91,24 @@ public class FlightService {
         return "Destination: " + flight.getDestination() + " | " + "Departure time: " + flight.getDepartureTime() + " | " + "Available seats: " + availableSeats(flight);
     }
 
-    public static void displayAllFlights(List<Flight> flights){
-        for (Flight flight : flights) {
+    public void displayAllFlights(){
+        for (Flight flight : flightDao.getAllFlights()) {
             System.out.println("--------------------");
             System.out.println(displayFlight(flight));
         }
     }
 
-    public static void displayFullyBooked(List<Flight> flights){
+    public void displayFullyBooked(){
         System.out.println("Fully booked flights:");
-        for (Flight flight : flights) {
+        for (Flight flight : flightDao.getAllFlights()) {
             if (availableSeats(flight) == 0){
                 System.out.println(displayFlight(flight));
                 System.out.println("--------------------");
             }
         }
     }
+
+
 
     public static void addPassengerToFlight(Passenger passenger, Flight flight){
         for (int i = 0; i < flight.getPassengerIds().length; i++) {
@@ -116,7 +119,7 @@ public class FlightService {
         }
     }
 
-    public static boolean onFlight(Passenger passenger, Flight flight){
+    public boolean onFlight(Passenger passenger, Flight flight){
         for (String passengerId : flight.getPassengerIds()) {
             if (passenger.getId().equals(passengerId)){
                 return true;
@@ -125,9 +128,9 @@ public class FlightService {
         return false;
     }
 
-    public static void checkPassengerFlights(Passenger passenger, List<Flight> flights){
+    public void checkPassengerFlights(Passenger passenger){
         List<Flight> onboard = new ArrayList<>();
-        for (Flight flight : flights) {
+        for (Flight flight : flightDao.getAllFlights()) {
             if (onFlight(passenger, flight)){
                 onboard.add(flight);
             }
@@ -137,15 +140,10 @@ public class FlightService {
             for (Flight flight : onboard) {
                 System.out.println(displayFlight(flight));
             }
-
         } else {
             System.out.println("No flights available.");
         }
         System.out.println("---------------------");
     }
-
-
-
-
 
 }

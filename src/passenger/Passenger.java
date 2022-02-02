@@ -1,6 +1,6 @@
-package Passenger;
+package passenger;
 
-import Util.IdGenerator;
+import util.IdGenerator;
 
 import java.util.Objects;
 
@@ -17,6 +17,14 @@ public class Passenger {
     public Passenger(String name, String email, String phoneNumber, String passport) {
         IdGenerator idGenerator = new IdGenerator();
         this.id = idGenerator.randomIdGenerator();
+        this.name = name;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.passport = passport;
+    }
+
+    public Passenger(String id, String name, String email, String phoneNumber, String passport) {
+        this.id = id;
         this.name = name;
         this.email = email;
         this.phoneNumber = phoneNumber;
