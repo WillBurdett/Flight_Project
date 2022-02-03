@@ -21,7 +21,7 @@ public class Main {
 
         ////////////////////////////////////////////////////////
 
-        System.out.println("Welcome to the Flight Booking CLI!");
+        System.out.println("Welcome to the Flight Management CLI!");
 
         String[] options = {
                 "Add a flight",

@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Scanner;
 
 public class PassengerService {
-    // Do business
 
     private PassengerDao passengerDao;
     private FlightService flightService;
