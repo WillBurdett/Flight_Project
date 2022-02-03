@@ -1,5 +1,6 @@
 import flight.Destination;
 import flight.Flight;
+import util.IdGenerator;
 import util.Interface;
 import flight.FlightService;
 import flight.FlightDao;
@@ -15,7 +16,8 @@ public class Main {
         FlightDao flightDao = new FlightDao();
         PassengerDao passengerDao = new PassengerDao();
         FlightService flightService = new FlightService(flightDao);
-        PassengerService passengerService = new PassengerService(passengerDao, flightService);
+        IdGenerator idGenerator = new IdGenerator();
+        PassengerService passengerService = new PassengerService(passengerDao, flightService, idGenerator);
 
         ////////////////////////////////////////////////////////
 

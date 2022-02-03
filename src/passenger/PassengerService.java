@@ -2,6 +2,7 @@ package passenger;
 
 import flight.FlightDao;
 import flight.FlightService;
+import util.IdGenerator;
 import util.Interface;
 
 import java.util.ArrayList;
@@ -13,10 +14,12 @@ public class PassengerService {
 
     private PassengerDao passengerDao;
     private FlightService flightService;
+    private IdGenerator idGenerator;
 
-    public PassengerService(PassengerDao passengerDao, FlightService flightService) {
+    public PassengerService(PassengerDao passengerDao, FlightService flightService, IdGenerator idGenerator) {
         this.passengerDao = passengerDao;
         this.flightService = flightService;
+        this.idGenerator = idGenerator;
     }
 
     public Passenger getById(String id) {
@@ -75,7 +78,7 @@ public class PassengerService {
         } else {
             String[] arr = new String[filteredList.size()];
             for (int i = 0; i < filteredList.size(); i++) {
-                arr[i] = filteredList.get(i).toString();
+                arr[i] = displayPassenger(filteredList.get(i));
             }
            int option =  Interface.getOption("Choose a passenger from the list below:", arr);
             Passenger passenger = filteredList.get(option - 1);
@@ -84,6 +87,9 @@ public class PassengerService {
     }
 
     public void createNewUser(){
+
+        String id = idGenerator.randomIdGenerator(passengerDao.getAllPassengers());
+
         System.out.println("Please enter your full name:");
         Scanner scanner = new Scanner(System.in);
         String name = scanner.nextLine();
@@ -97,12 +103,16 @@ public class PassengerService {
         System.out.println("Please enter your passport number:");
         String passportNum = scanner.nextLine();
 
-        Passenger passenger = new Passenger(name, email, phoneNum, passportNum);
+        Passenger passenger = new Passenger(id, name, email, phoneNum, passportNum);
 
         passengerDao.getAllPassengers().add(passenger);
         passengerDao.updateAllPassengers();
 
         System.out.println(passenger.getName() + " created!");
+    }
+
+    public String displayPassenger(Passenger p){
+        return p.getId() + " | " + p.getName() + " | " + p.getEmail() + " | " + p.getPassport();
     }
 }
 

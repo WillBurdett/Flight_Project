@@ -15,8 +15,7 @@ public class Passenger {
     }
 
     public Passenger(String name, String email, String phoneNumber, String passport) {
-        IdGenerator idGenerator = new IdGenerator();
-        this.id = idGenerator.randomIdGenerator();
+        this.id = "";
         this.name = name;
         this.email = email;
         this.phoneNumber = phoneNumber;
