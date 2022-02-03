@@ -13,17 +13,6 @@ public class FlightDao {
     private List<Flight> allFlights = new ArrayList<>();
 
     public FlightDao() {
-        /////////////////////////////////////////////////////////
-
-//        Flight flight1 = new Flight("code1", Destination.BER, LocalDateTime.of(2022, 1, 22, 9, 30), 0);
-//        Flight flight2 = new Flight("code2", Destination.BJS, LocalDateTime.of(2022, 2, 10, 10, 00), 2);
-//        Flight flight3 = new Flight("code3", Destination.BOD, LocalDateTime.of(2022, 3, 02, 13, 45), 2);
-//
-//        allFlights.add(flight1);
-//        allFlights.add(flight2);
-//        allFlights.add(flight3);
-
-        //////////////////////////////
 
         String dirName = "/Users/williamburdett/Desktop/Intellij/IdeaProjects/Flight_Project/src/flight";
         String fileName = "FlightDB.txt";
@@ -95,8 +84,6 @@ public class FlightDao {
         String dirName = "/Users/williamburdett/Desktop/Intellij/IdeaProjects/Flight_Project/src/flight";
         String fileName = "FlightDB.txt";
 
-        List<Flight> test = new ArrayList<>();
-
         File file = new File(dirName, fileName);
 
         try {
@@ -131,7 +118,6 @@ public class FlightDao {
     }
 }
 
-//////////////////////////////////////////////////////
 
 
 
