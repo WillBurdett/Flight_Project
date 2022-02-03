@@ -74,6 +74,7 @@ public class FlightService {
         Flight flight = new Flight(flightCode, destination, departureTime, capacity);
 
         flightDao.getAllFlights().add(flight);
+        flightDao.updateAllFlights();
     }
     // All flights
     public static int availableSeats(Flight flight){
@@ -107,12 +108,11 @@ public class FlightService {
         }
     }
 
-
-
-    public static void addPassengerToFlight(Passenger passenger, Flight flight){
+    public void addPassengerToFlight(Passenger passenger, Flight flight){
         for (int i = 0; i < flight.getPassengerIds().length; i++) {
             if (flight.getPassengerIds()[i] == null){
                 flight.getPassengerIds()[i] = passenger.getId();
+                flightDao.updateAllFlights();
                 break;
             }
         }
@@ -165,6 +165,7 @@ public class FlightService {
             System.out.println("Flight not found.");
         } else {
             flightDao.getAllFlights().remove(flight);
+            flightDao.updateAllFlights();
             System.out.println("Flight " + flight.getFlightCode() + " cancelled.");
             displayAllFlights();
         }
@@ -203,9 +204,9 @@ public class FlightService {
                 arr[i] = displayFlight(availableFlights.get(i));
             }
             int option = Interface.getOption("Pick an available flight below:", arr);
-            if (option < availableFlights.size()){
+            if (option <= availableFlights.size()){
                 addPassengerToFlight(p, availableFlights.get(option -1));
-                checkPassengerFlights(p);
+                System.out.println("Flight booked for " + p.getName() + "!");
             }
         }
     }

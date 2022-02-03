@@ -82,6 +82,13 @@ public class Passenger {
                 '}';
     }
 
+
+    public String toStringCSV() {
+        return id + "," + name + "," + email + ","+ phoneNumber + ","+ passport;
+    }
+
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

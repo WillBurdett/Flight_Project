@@ -8,16 +8,6 @@ public enum Destination {
 //    DXB("Dubai", "UAE"),
 //    LAX("Los Angeles", "USA"),
 //    PRG("Prague", "Czech Republic"),
-//    ;
-//
-//    private final String location;
-//    private final String country;
-//
-//    private Destination(String location, String country) {
-//        this.location = location;
-//        this.country = country;
-//    }
-
     BER,
     BJS,
     BOD,
@@ -25,12 +15,4 @@ public enum Destination {
     DXB,
     LAX,
     PRG;
-
-//    private final String location;
-//    private final String country;
-//
-//    private Destination(String location, String country) {
-//        this.location = location;
-//        this.country = country;
-//    }
 }

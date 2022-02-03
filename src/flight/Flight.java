@@ -22,6 +22,13 @@ public class Flight{
         this.passengerIds = new String[maxCapacity];
     }
 
+    public Flight(String flightCode, Destination destination, LocalDateTime departureTime, int maxCapacity, String[] passengerIds) {
+        this.flightCode = flightCode;
+        this.destination = destination;
+        this.departureTime = departureTime;
+        this.maxCapacity = maxCapacity;
+        this.passengerIds = passengerIds;
+    }
 
     public String getFlightCode() {
         return flightCode;
@@ -76,7 +83,7 @@ public class Flight{
 
 
     public String toStringCSV() {
-        return flightCode + "," + destination + "," + departureTime + "," + maxCapacity + ","+ Arrays.toString(passengerIds);
+        return flightCode + "," + destination + "," + departureTime.getYear()+ "-" + departureTime.getMonthValue()+ "-" + + departureTime.getDayOfMonth()+ "-" + departureTime.getHour()+ "-" + departureTime.getMinute()+ "," + maxCapacity + ","+ Arrays.toString(passengerIds);
     }
 
     @Override

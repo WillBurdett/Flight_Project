@@ -1,3 +1,5 @@
+import flight.Destination;
+import flight.Flight;
 import util.Interface;
 import flight.FlightService;
 import flight.FlightDao;
@@ -8,10 +10,6 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void menu() {
-
-    }
-
     public static void main(String[] args) {
 
         FlightDao flightDao = new FlightDao();
@@ -19,13 +17,15 @@ public class Main {
         FlightService flightService = new FlightService(flightDao);
         PassengerService passengerService = new PassengerService(passengerDao, flightService);
 
+        ////////////////////////////////////////////////////////
 
         System.out.println("Welcome to the Flight Booking CLI!");
 
         String[] options = {
                 "Add a flight",
                 "Display all flights",
-                "Display booked flights",
+                "Display fully-booked flights",
+                "Create a new user",
                 "Display flight or book flight for a specific user",
                 "Cancel flight",
                 "Quit the program"
@@ -51,16 +51,20 @@ public class Main {
                     flightService.displayFullyBooked();
                     break;
                 case 4:
+                    System.out.println("'Create a new user' selected.");
+                    passengerService.createNewUser();
+                    break;
+                case 5:
                     System.out.println("'Display flight or book a flight for a specific user' selected.");
                     passengerService.chooseIdOrName();
                     break;
 
-                case 5:
+                case 6:
                     System.out.println("'Cancel a flight' selected.");
                     flightService.cancelFlight();
 
                     break;
-                case 6:
+                case 7:
                     System.out.println("Thanks for using our management system!");
                     System.exit(0);
             }

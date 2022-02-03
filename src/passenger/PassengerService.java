@@ -82,5 +82,27 @@ public class PassengerService {
             flightService.bookOrDisplay(passenger);
         }
     }
+
+    public void createNewUser(){
+        System.out.println("Please enter your full name:");
+        Scanner scanner = new Scanner(System.in);
+        String name = scanner.nextLine();
+
+        System.out.println("Please enter your email:");
+        String email = scanner.nextLine();
+
+        System.out.println("Please enter your phone number");
+        String phoneNum= scanner.nextLine();
+
+        System.out.println("Please enter your passport number:");
+        String passportNum = scanner.nextLine();
+
+        Passenger passenger = new Passenger(name, email, phoneNum, passportNum);
+
+        passengerDao.getAllPassengers().add(passenger);
+        passengerDao.updateAllPassengers();
+
+        System.out.println(passenger.getName() + " created!");
+    }
 }
 
