@@ -9,14 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class FlightDao {
+public class FlightFileDB implements FlightDAO {
     private List<Flight> allFlights = new ArrayList<>();
 
-    public FlightDao() {
+    public FlightFileDB() {
 
-        //String dirName = "/Users/williamburdett/Desktop/Intellij/IdeaProjects/Flight_Project/src/flight";
         String dirName = "/Users/williamburdett/Desktop/Intellij/IdeaProjects/Flight_Project/src/main/java/flight";
-        //String fileName = "FlightDB.txt";
         String fileName = "FlightDB.txt";
 
         File file = new File(dirName, fileName);
