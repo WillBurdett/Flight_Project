@@ -17,7 +17,6 @@ public class PassengerDao {
 
     public PassengerDao() {
 
-        // String dirName = "/Users/williamburdett/Desktop/Intellij/IdeaProjects/Flight_Project/src/passenger";
         String dirName = "/Users/williamburdett/Desktop/Intellij/IdeaProjects/Flight_Project/src/main/java/passenger";
         String fileName = "PassengerDB.txt";
 

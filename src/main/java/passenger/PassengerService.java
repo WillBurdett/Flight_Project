@@ -1,6 +1,5 @@
 package passenger;
 
-import flight.FlightDao;
 import flight.FlightService;
 import util.IdGenerator;
 import util.Interface;

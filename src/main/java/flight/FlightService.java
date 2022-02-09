@@ -10,8 +10,8 @@ import java.util.Scanner;
 
 public class FlightService {
 
-    private FlightDao flightDao;
-    public FlightService(FlightDao flightDao) {
+    private FlightDAO flightDao;
+    public FlightService(FlightDAO flightDao) {
         this.flightDao = flightDao;
     }
 

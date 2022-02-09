@@ -1,9 +1,8 @@
-import flight.Destination;
-import flight.Flight;
+import flight.FlightDAO;
 import util.IdGenerator;
 import util.Interface;
 import flight.FlightService;
-import flight.FlightDao;
+import flight.FlightFileDB;
 import passenger.PassengerDao;
 import passenger.PassengerService;
 
@@ -13,7 +12,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        FlightDao flightDao = new FlightDao();
+        FlightDAO flightDao = new FlightFileDB();
         PassengerDao passengerDao = new PassengerDao();
         FlightService flightService = new FlightService(flightDao);
         IdGenerator idGenerator = new IdGenerator();
